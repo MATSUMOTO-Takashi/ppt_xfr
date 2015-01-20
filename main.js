@@ -28,7 +28,7 @@ fileSysObj.CopyFile(srcPath, dstPath);
 var configFile = fileSysObj.OpenTextFile(configPath, 1, false, -2);
 var config = eval('(' + configFile.ReadAll() + ')');
 // descending sort
-config.del.sort(function(a, b) {
+config.slide.del.sort(function(a, b) {
   return b - a;
 });
 
@@ -37,9 +37,23 @@ config.del.sort(function(a, b) {
 var pptObj = WScript.CreateObject('PowerPoint.Application');
 pptObj.Presentations.Open(dstPath);
 
-for (var i = 0; i < config.del.length; i++) {
-  pptObj.ActivePresentation.Slides(config.del[i]).Delete();
+// note
+if (config.note.del === -1) {
+  // slide number is 1 origin
+  for (var i = 1; i <= pptObj.ActivePresentation.Slides.Count; i++) {
+    pptObj.ActivePresentation.Slides(i).NotesPage.Shapes.Placeholders.Item(2).TextFrame.TextRange = '';
+  }
+} else {
+  for (var i = 0; i < config.note.del.length; i++) {
+    pptObj.ActivePresentation.Slides(config.note.del[i]).NotesPage.Shapes.Placeholders.Item(2).TextFrame.TextRange = '';
+  }
 }
+
+// slide
+for (var i = 0; i < config.slide.del.length; i++) {
+  pptObj.ActivePresentation.Slides(config.slide.del[i]).Delete();
+}
+
 
 pptObj.ActivePresentation.Save();
 pptObj.Quit();
