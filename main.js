@@ -50,10 +50,24 @@ if (config.note.del === -1) {
 }
 
 // slide
+for (var i = 0; i < config.slide.hidden.length; i++) {
+  pptObj.ActivePresentation.Slides(config.slide.hidden[i]).SlideShowTransition.Hidden = true;
+}
+
+if (config.slide.show === -1) {
+  // slide number is 1 origin
+  for (var i = 1; i <= pptObj.ActivePresentation.Slides.Count; i++) {
+    pptObj.ActivePresentation.Slides(i).SlideShowTransition.Hidden = false;
+  }
+} else {
+  for (var i = 0; i < config.slide.show.length; i++) {
+    pptObj.ActivePresentation.Slides(config.slide.show[i]).SlideShowTransition.Hidden = false;
+  }
+}
+
 for (var i = 0; i < config.slide.del.length; i++) {
   pptObj.ActivePresentation.Slides(config.slide.del[i]).Delete();
 }
-
 
 pptObj.ActivePresentation.Save();
 pptObj.Quit();
