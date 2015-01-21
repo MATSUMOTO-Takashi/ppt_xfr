@@ -1,4 +1,4 @@
-var nparams = WScript.Arguments.Named;
+ï»¿var nparams = WScript.Arguments.Named;
 var params = WScript.Arguments.Unnamed;
 
 if (nparams.Exists('h')) usage();
@@ -74,11 +74,11 @@ pptObj.Quit();
 
 
 function usage() {
-  var msg = 'main.bat [/f] [/o] Œ³ƒtƒ@ƒCƒ‹\n' +
-            '  Œ³ƒtƒ@ƒCƒ‹  •ÏŠ·Œ³‚Ìƒtƒ@ƒCƒ‹\n' +
-            '  /f  İ’èƒtƒ@ƒCƒ‹ (default:config.json)\n' +
-            '  /o  o—Íƒtƒ@ƒCƒ‹–¼ (default:output.pptx)\n' +
-            '  /h  ƒwƒ‹ƒv\n';
+  var msg = 'main.bat [/f] [/o] å…ƒãƒ•ã‚¡ã‚¤ãƒ«\n' +
+            '  å…ƒãƒ•ã‚¡ã‚¤ãƒ«  å¤‰æ›å…ƒã®ãƒ•ã‚¡ã‚¤ãƒ«\n' +
+            '  /f  è¨­å®šãƒ•ã‚¡ã‚¤ãƒ« (default:config.json)\n' +
+            '  /o  å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«å (default:output.pptx)\n' +
+            '  /h  ãƒ˜ãƒ«ãƒ—\n';
   WScript.Echo(msg);
   WScript.Quit();
 }

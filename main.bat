@@ -1,2 +1,2 @@
 @echo off
-cscript main.js %*
+cscript main.wsf %*

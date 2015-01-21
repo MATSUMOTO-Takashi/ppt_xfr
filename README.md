@@ -1,44 +1,44 @@
 # ppt_xfr
-�쐬�����p���[�|�C���g�̃X���C�h���A�폜�A�\��/��\���؂�ւ��A�m�[�g�폜�����邱�Ƃ��ł��܂��B
+作成したパワーポイントのスライドを、削除、表示/非表示切り替え、ノート削除をすることができます。
 
-# �����
+# 動作環境
 * OS:Windows
 * Microsoft PowerPoint
 * .ppt/.pptx
 
-Windows7 + PowerPoint 2010�œ���m�F�����Ă��܂��B
+Windows7 + PowerPoint 2010で動作確認をしています。
 
-������`.ppt`�̏ꍇ�A��q����悤��`/o`�I�v�V�����𖾎�����K�v������܂��B
+ただし`.ppt`の場合、後述するように`/o`オプションを明示する必要があります。
 
-# �g����
+# 使い方
 ```
 > git clone https://github.com/MATSUMOTO-Takashi/ppt_xfr.git
 > cd ppt_xfr
 > main.bat /f:config_example.json /o:output.pptx test.pptx
 ```
 
-���s���̏����F  
-`main.bat [/f] [/o] ���t�@�C��`
+実行時の書式：  
+`main.bat [/f] [/o] 元ファイル`
 
-# ���s���I�v�V����
-���s���Ɉȉ��̃I�v�V�������w�肷�邱�Ƃ��ł��܂��B
+# 実行時オプション
+実行時に以下のオプションを指定することができます。
 
 ## /f
-�w�肵���R���t�B�O�t�@�C�����g�p���܂��B
+指定したコンフィグファイルを使用します。
 
-�ȗ������ꍇ`config.json`��ǂݍ��݂܂��B
+省略した場合`config.json`を読み込みます。
 
 ## /o
-�o�̓t�@�C���̃t�@�C�������w�肵�܂��B
+出力ファイルのファイル名を指定します。
 
-�ȗ������ꍇ`output.pptx`���o�͂��܂��B
+省略した場合`output.pptx`を出力します。
 
-**���ӁI**�F���t�@�C����2007�ȑO��`.ppt`�̏ꍇ�A�����I��`/o`���w�肵�Ȃ��ƃG���[�ƂȂ�܂��B
+**注意！**：元ファイルが2007以前の`.ppt`の場合、明示的に`/o`を指定しないとエラーとなります。
 
 ## /h
-�w���v��\�����܂��B
+ヘルプを表示します。
 
-# �ϊ��p�ݒ�t�@�C��
+# 変換用設定ファイル
 ex) config_example.json
 
 ```
@@ -55,40 +55,40 @@ ex) config_example.json
 ```
 
 ## slide.show
-�X���C�h�V���[���̕\���ݒ�ł��B
+スライドショー時の表示設定です。
 
 type: -1 or array
 
--1��ݒ肷��ƑS�ẴX���C�h�ɑ΂��ĕ\���ݒ���s���܂��B
+-1を設定すると全てのスライドに対して表示設定を行います。
 
-�w�肵���X���C�h�̂ݕ\���ݒ���s�������ꍇ��`[1, 2, 3]`�̂悤�ɔz��^���g�p���A�X���C�h�ԍ��𗅗񂵂Ă��������B
+指定したスライドのみ表示設定を行いたい場合は`[1, 2, 3]`のように配列型を使用し、スライド番号を羅列してください。
 
 ## slide.hidden
-�X���C�h�V���[���̔�\���ݒ�ł��B
+スライドショー時の非表示設定です。
 
 type: array
 
-�w�肵���X���C�h�̔�\���ݒ�����܂��B`[1, 2, 3]`�̂悤�ɔz��^���g�p���A�X���C�h�ԍ��𗅗񂵂Ă��������B
+指定したスライドの非表示設定をします。`[1, 2, 3]`のように配列型を使用し、スライド番号を羅列してください。
 
-slide.show��slide.hidden�œ����ԍ����w�肳�ꂽ�ꍇ�A**��\�����**�ƂȂ�܂��B
+slide.showとslide.hiddenで同じ番号が指定された場合、**非表示状態**となります。
 
 ## slide.del
-�X���C�h�̍폜�����܂��B
+スライドの削除をします。
 
 type: array
 
-�w�肵���X���C�h���폜���܂��B`[1, 2, 3]`�̂悤�ɔz��^���g�p���A�X���C�h�ԍ��𗅗񂵂Ă��������B
+指定したスライドを削除します。`[1, 2, 3]`のように配列型を使用し、スライド番号を羅列してください。
 
 ## note.del
-�m�[�g�̍폜�����܂��B
+ノートの削除をします。
 
 type: -1 or array
 
--1��ݒ肷��ƑS�ẴX���C�h�̃m�[�g���폜���܂��B
+-1を設定すると全てのスライドのノートを削除します。
 
-�w�肵���X���C�h�̃m�[�g�݂̂��폜�������ꍇ��`[1, 2, 3]`�̂悤�ɔz��^���g�p���A�X���C�h�ԍ��𗅗񂵂Ă��������B
+指定したスライドのノートのみを削除したい場合は`[1, 2, 3]`のように配列型を使用し、スライド番号を羅列してください。
 
-## �X���C�h�ԍ��̎w��ɂ���
-�X���C�h�̍폜�͈�A�̑���̍Ō�Ɏ��s����܂��B
+## スライド番号の指定について
+スライドの削除は一連の操作の最後に実行されます。
 
-����āA�X���C�h�̔ԍ��̓p���[�|�C���g���J�����ۂɐU���Ă���X���C�h�ԍ������̂܂܎w�肵�Ă��������B
+よって、スライドの番号はパワーポイントを開いた際に振られているスライド番号をそのまま指定してください。
