@@ -14,7 +14,7 @@ Windows7 + PowerPoint 2010で動作確認をしています。
 ```
 > git clone https://github.com/MATSUMOTO-Takashi/ppt_xfr.git
 > cd ppt_xfr
-> main.bat /f:config.json /o:output.pptx test.pptx
+> main.bat /f:config_example.json /o:output.pptx test.pptx
 ```
 
 実行時の書式：  
@@ -70,7 +70,7 @@ type: array
 
 指定したスライドの非表示設定をします。`[1, 2, 3]`のように配列型を使用し、スライド番号を羅列してください。
 
-slide.showとslide.hiddenで同じ番号が指定された場合、**表示状態**となります。
+slide.showとslide.hiddenで同じ番号が指定された場合、**非表示状態**となります。
 
 ## slide.del
 スライドの削除をします。
