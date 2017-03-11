@@ -15,10 +15,13 @@ Windows7 + PowerPoint 2010で動作確認をしています。
 > git clone https://github.com/MATSUMOTO-Takashi/ppt_xfr.git
 > cd ppt_xfr
 > main.bat /f:config_example.json /o:output.pptx test.pptx
+> main.bat /t:"test" /o:output.pptx test.pptx
 ```
 
 実行時の書式：  
 `main.bat [/f] [/o] 元ファイル`
+
+`main.bat [/t] [/o] 元ファイル`
 
 # 実行時オプション
 実行時に以下のオプションを指定することができます。
@@ -27,6 +30,14 @@ Windows7 + PowerPoint 2010で動作確認をしています。
 指定したコンフィグファイルを使用します。
 
 省略した場合`config.json`を読み込みます。
+
+## /t
+スライドノートの1行目をタグとみなし、指定したタグと一致したスライドを削除します。
+
+`/t`を指定した場合、`/f`のオプションは無視されます。
+
+例えば、いくつかのスライドのノートの1行目に`test`と書いておき、スクリプト実行時に`/t:"test"`とオプションを指定して実行することで、それらをまとめて削除することができます。
+
 
 ## /o
 出力ファイルのファイル名を指定します。
